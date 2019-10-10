@@ -1,6 +1,6 @@
 env:
    global:
-     - CONAN_REFERENCE: "flann/1.8.5"
+     - CONAN_REFERENCE: "flann/1.9.1"
      - CONAN_USERNAME: "bvanlew"
      - CONAN_LOGIN_USERNAME: "admin"
      - CONAN_CHANNEL: "stable"

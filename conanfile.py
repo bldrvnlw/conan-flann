@@ -6,7 +6,7 @@ import os
 
 class FlannConan(ConanFile):
     name = "libname"
-    version = "1.8.5"
+    version = "1.9.1"
     description = "3rd party library for Fast Library for Approximate Nearest Neighbors by Marius Muja and David Lowe"
     # topics can get used for searches, GitHub topics, Bintray tags etc. Add here keywords about the library
     topics = ("nearest neighbor", "high dimensions", "approximated")
