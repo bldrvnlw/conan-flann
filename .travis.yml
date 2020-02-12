@@ -1,13 +1,10 @@
 env:
    global:
      - CONAN_REFERENCE: "flann/1.9.1"
-     - CONAN_USERNAME: "bvanlew"
      - CONAN_LOGIN_USERNAME: "admin"
-     - CONAN_CHANNEL: "stable"
      - CONAN_UPLOAD: "http://cytosplore.lumc.nl:8081/artifactory/api/conan/conan-local"
 #     - CONAN_STABLE_BRANCH_PATTERN: "release/*"
 #     - CONAN_UPLOAD_ONLY_WHEN_STABLE: 1 # Will only upload when the branch matches "release/*"
-#     - CONAN_DOCKER_32_IMAGES: 1
      
 linux: &linux
    os: linux
@@ -21,45 +18,18 @@ osx: &osx
    language: generic
 matrix:
    include:
-#      - <<: *linux
-#        env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=conanio/gcc49
-#      - <<: *linux
-#        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=conanio/gcc5
-#      - <<: *linux
-#        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6
-#      - <<: *linux
-#        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7
-#      - <<: *linux
-#        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CONAN_ARCHS=x86_64
-#      - <<: *linux
-#        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9
-#      - <<: *linux
-#        env: CONAN_CLANG_VERSIONS=3.9 CONAN_DOCKER_IMAGE=conanio/clang39
-#      - <<: *linux
-#        env: CONAN_CLANG_VERSIONS=4.0 CONAN_DOCKER_IMAGE=conanio/clang40
-#      - <<: *linux
-#        env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=conanio/clang50
-#      - <<: *linux
-#        env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=conanio/clang60
-#      - <<: *linux
-#        env: CONAN_CLANG_VERSIONS=7.0 CONAN_DOCKER_IMAGE=conanio/clang7
+
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/clang8
-#      - <<: *osx
-#        osx_image: xcode8.3
-#        env: CONAN_APPLE_CLANG_VERSIONS=8.1
-#      - <<: *osx
-#        osx_image: xcode9
-#        env: CONAN_APPLE_CLANG_VERSIONS=9.0
-#      - <<: *osx
-#        osx_image: xcode9.4
-#        env: CONAN_APPLE_CLANG_VERSIONS=9.1
-#      - <<: *osx
-#        osx_image: xcode10.2
-#        env: CONAN_APPLE_CLANG_VERSIONS=10.0
-#      - <<: *osx
-#        osx_image: xcode11
-#        env: CONAN_APPLE_CLANG_VERSIONS=11.0
+        env: CONAN_CLANG_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc5 CONAN_BUILD_TYPES=Release
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc5 CONAN_BUILD_TYPES=Debug
+      - <<: *osx
+        osx_image: xcode10.3
+        env: CONAN_APPLE_CLANG_VERSIONS=10.0 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64 CONAN_IS_TRAVIS_OSX=1  
+      - <<: *osx
+        osx_image: xcode10.3
+        env: CONAN_APPLE_CLANG_VERSIONS=10.0 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86_64 CONAN_IS_TRAVIS_OSX=1         
+
 
 install:
   - chmod +x .ci/install.sh
